@@ -6,6 +6,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../public/assets/css/user.css">
+  <script src="../../controllers/cloudinary.js"></script>
+
+  
 	<title>MedCheck|User Page</title>
 </head>
 <body>
@@ -42,26 +45,33 @@
         <div class="collapsible-header">
         <ul class="collection">
     
-      <li class="collection-item avatar">
-        <i class="material-icons circle">local_pharmacy</i>
-        <span class="title"><h5>Medication</h5></span>
-        <p>click to expand info <br>
-          
-        </p>
-  
-      </li>
-     
-      </ul>
+          <li class="collection-item avatar">
+            <i class="material-icons circle">local_pharmacy</i>
+            <span class="title"><h5>Medication</h5></span>
+            <p>click to expand info <br> 
+            </p>
+
+      
+          </li>
+       
+        </ul>
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         </div>
           <div class="collapsible-body">
+
             <form class="col s12">
 
       <br>
 
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input  disabled value="Med Name from database or User Entered" id="disabled med_name" type="text" class="validate">
           <label for="med_name">Medication Name</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input  disabled value="Drug Class from Database" id="disabled drug_class" type="text" class="validate">
+          <label for="drug_class">Drug Class</label>
         </div>
       </div>
 
@@ -90,8 +100,8 @@
 
       
         <div class="input-field col s4">
-          <input disabled value="User's refills left" id="disabled refills" type="text" class="validate">
-          <label for="refills">Refills Left</label>
+          <input disabled value="Quantity of meds left" id="disabled quantity" type="text" class="validate">
+          <label for="quantity">Quantity</label>
         </div>
 
       </div>
@@ -110,13 +120,25 @@
         </div>
 
       </div>
+
+      <div class="row">
+        <div class="input field col s12">
+          <div class="card">
+            <img src="http://res.cloudinary.com/alrod909/image/upload/v1507102377/sample.jpg" id="img-preview" width="250px"/>
+            <label class="file-upload-container" for="file-upload">
+                <input id="file-upload" type="file" style="display:none;">
+                Select an Image
+            </label>
+          </div>
+        </div>
+      </div>
       
       <div class="row">
         <div class="col s12">
           <a class="waves-effect waves-light btn"><i class="material-icons left">create</i>Edit</a>
         </div>
       </div>
-
+      
        
       </form>        
     </div>
@@ -159,16 +181,22 @@
       <br>
 
       <div class="row">
-        <div class="input-field col s12">
-          <input id="med_name" type="text" class="validate">
-          <label for="med_name">Medication Name</label>
+        <div class="input-field col s6">
+          <input id="med_name2" type="text" class="validate">
+          <label for="med_name2">Medication Name</label>
         </div>
+        
+        <div class="input-field col s6">
+          <input id="drug_class2" type="text" class="validate">
+          <label for="drug_class2">Drug Class</label>
+        </div>
+
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="med_desc" type="text" class="validate">
-          <label for="med_desc">Description of medication</label>
+          <input id="med_desc2" type="text" class="validate">
+          <label for="med_desc2">Description of medication</label>
         </div>
       </div>
 
@@ -176,22 +204,22 @@
       
       <div class="row">
         <div class="input-field col s4">
-          <input id="dosage" type="text" class="validate">
-          <label for="dosage">Dosage</label>
+          <input id="dosage2" type="text" class="validate">
+          <label for="dosage2">Dosage</label>
         </div>
       
 
       
         <div class="input-field col s4">
-          <input id="frequency" type="text" class="validate">
-          <label for="frequency">Frequency Taken</label>
+          <input id="frequency2" type="text" class="validate">
+          <label for="frequency2">Frequency Taken</label>
         </div>
       
 
       
         <div class="input-field col s4">
-          <input id="refills" type="text" class="validate">
-          <label for="refills">Refills Left</label>
+          <input id="quantity2" type="text" class="validate">
+          <label for="quantity2">Quantity</label>
         </div>
 
       </div>
@@ -200,15 +228,27 @@
 
       <div class="row">
         <div class="input-field col s6">
-          <input id="doctor" type="text" class="validate">
-          <label for="doctor">Prescribing Doctor</label>
+          <input id="doctor2" type="text" class="validate">
+          <label for="doctor2">Prescribing Doctor</label>
         </div>
 
         <div class="input-field col s6">
-          <input id="doctor_number" type="text" class="validate">
-          <label for="doctor_number">Prescribing Doctor's Phone #</label>
+          <input id="doctor_number2" type="text" class="validate">
+          <label for="doctor_number2">Prescribing Doctor's Phone #</label>
         </div>
 
+      </div>
+
+      <div class="row">
+        <div class="input field col s12">
+          <div class="card">
+            <img src="http://res.cloudinary.com/alrod909/image/upload/v1507102377/sample.jpg" id="img-preview" width="250px"/>
+            <label class="file-upload-container" for="file-upload">
+                <input id="file-upload" type="file" style="display:none;">
+                Select an Image
+            </label>
+          </div>
+        </div>
       </div>
       
       <div class="row">
@@ -228,6 +268,7 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </body>
 </html>
