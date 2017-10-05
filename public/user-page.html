@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../public/assets/css/user.css">
+  <script src="../../controllers/cloudinary.js"></script>
+
+  
+	<title>MedCheck|User Page</title>
+</head>
+<body>
+	<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><img width="130" src="../../public/assets/Med-Check-logo-01.png"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="badges.html">Logout</a></li>
+        <li><a href="collapsible.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <blockquote>
+  	<h3>
+      Welcome.
+  	</h3>
+  </blockquote>
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#myMeds"><i class="material-icons">local_pharmacy</i>My Medications</a></li>
+        <li class="tab col s3"><a class="active" href="#addMed"><i class="material-icons">add</i>Add Medication</a></li>
+      </ul>
+    </div>
+
+    <!-- Medications list in form kind of thing -->
+    <div id="myMeds" class="col s12">
+    	<div class="row">
+
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header">
+        <ul class="collection">
+    
+          <li class="collection-item avatar">
+            <i class="material-icons circle">local_pharmacy</i>
+            <span class="title"><h5>Medication</h5></span>
+            <p>click to expand info <br> 
+            </p>
+
+      
+          </li>
+       
+        </ul>
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+          <div class="collapsible-body">
+
+            <form class="col s12">
+
+      <br>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input  disabled value="Med Name from database or User Entered" id="disabled med_name" type="text" class="validate">
+          <label for="med_name">Medication Name</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input  disabled value="Drug Class from Database" id="disabled drug_class" type="text" class="validate">
+          <label for="drug_class">Drug Class</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled value="User's Description" id="disabled med_desc" type="text" class="validate">
+          <label for="med_desc">Description of medication</label>
+        </div>
+      </div>
+
+      <br>
+      
+      <div class="row">
+        <div class="input-field col s4">
+          <input disabled value="User's Dosage" id="disabled dosage" type="text" class="validate">
+          <label for="dosage">Dosage</label>
+        </div>
+      
+
+      
+        <div class="input-field col s4">
+          <input disabled value="User's Frequency for drug" id="disabled frequency" type="text" class="validate">
+          <label for="frequency">Frequency Taken</label>
+        </div>
+      
+
+      
+        <div class="input-field col s4">
+          <input disabled value="Quantity of meds left" id="disabled quantity" type="text" class="validate">
+          <label for="quantity">Quantity</label>
+        </div>
+
+      </div>
+      
+      <br>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input disabled value="User's Doctor for that medication" id="disabled doctor" type="text" class="validate">
+          <label for="doctor">Prescribing Doctor</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input disabled value="User Doctor's phone number" id="disabled doctor_number" type="text" class="validate">
+          <label for="doctor_number">Prescribing Doctor's Phone #</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input field col s12">
+          <div class="card">
+            <img src="http://res.cloudinary.com/alrod909/image/upload/v1507102377/sample.jpg" id="img-preview" width="250px"/>
+            <label class="file-upload-container" for="file-upload">
+                <input id="file-upload" type="file" style="display:none;">
+                Select an Image
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col s12">
+          <a class="waves-effect waves-light btn"><i class="material-icons left">create</i>Edit</a>
+        </div>
+      </div>
+      
+       
+      </form>        
+    </div>
+      </li>
+    </ul>
+
+
+  </div>
+    </div>
+    <!-- Add medication form -->
+    <div id="addMed" class="col s12">
+
+      <ul class="collection">
+    
+      <li class="collection-item avatar">
+        <i class="material-icons circle">local_pharmacy</i>
+        <span class="title"><h5>Medication</h5></span>
+        <p>Short Description <br>
+          
+        </p>
+        <a href="#!" class="secondary-content"><i class="medium material-icons right">add_box</i></a>
+      </li>
+      <li class="collection-item avatar">
+        <i class="material-icons circle">local_pharmacy</i>
+        <span class="title"><h5>Medication</h5></span>
+        <p>Short Description <br>
+          
+        </p>
+        <a href="#!" class="secondary-content"><i class="medium material-icons right">add_box</i></a>
+      </li>
+      </ul>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <form class="col s12">
+
+      <br>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="med_name2" type="text" class="validate">
+          <label for="med_name2">Medication Name</label>
+        </div>
+        
+        <div class="input-field col s6">
+          <input id="drug_class2" type="text" class="validate">
+          <label for="drug_class2">Drug Class</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="med_desc2" type="text" class="validate">
+          <label for="med_desc2">Description of medication</label>
+        </div>
+      </div>
+
+      <br>
+      
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="dosage2" type="text" class="validate">
+          <label for="dosage2">Dosage</label>
+        </div>
+      
+
+      
+        <div class="input-field col s4">
+          <input id="frequency2" type="text" class="validate">
+          <label for="frequency2">Frequency Taken</label>
+        </div>
+      
+
+      
+        <div class="input-field col s4">
+          <input id="quantity2" type="text" class="validate">
+          <label for="quantity2">Quantity</label>
+        </div>
+
+      </div>
+      
+      <br>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="doctor2" type="text" class="validate">
+          <label for="doctor2">Prescribing Doctor</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="doctor_number2" type="text" class="validate">
+          <label for="doctor_number2">Prescribing Doctor's Phone #</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input field col s12">
+          <div class="card">
+            <img src="http://res.cloudinary.com/alrod909/image/upload/v1507102377/sample.jpg" id="img-preview" width="250px"/>
+            <label class="file-upload-container" for="file-upload">
+                <input id="file-upload" type="file" style="display:none;">
+                Select an Image
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col s12">
+          <a class="waves-effect waves-light btn"><i class="material-icons left">add_circle</i>Add Medication</a>
+        </div>
+      </div>
+
+       
+    </form>
+
+    </div>
+  
+
+
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+</html>
