@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-signin-client_id" content="231664727343-vuspvrttt5hgu9fdp1cijr.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="231664727343-vuspvrttt5hgu9fdp1cijrfds6h8psqp.apps.googleusercontent.com"></meta>
     <title>MedCheck | Home</title>
 
     <!--Styles-->
@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Catamaran:800" rel="stylesheet">
+    <script src="js/login.js"></script>
     <!--End Styles-->
 
 </head>
@@ -41,7 +42,7 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>Log In with Google</h4>
-        <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
+        <div id="gConnect" class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">X</a>
@@ -122,9 +123,13 @@
     </div>
 </div>
 
+<div id="authResult"></div>
+
 </div>
 
 <!--Jquery Link-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -135,6 +140,7 @@
 
 <!--Google login intergration Google Platform Library-->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/api.js"></script>
 
 <!--Custom Scripts-->
 

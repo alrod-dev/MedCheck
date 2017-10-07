@@ -22,6 +22,8 @@ $('a[href^="#about"]').click(function () {
     }, 500);
     return false;
 });
+
+
 //=====================User Page Functions================================
 
 //Clears form box when adding new medications
@@ -119,7 +121,7 @@ $("#add-med").on("click", function (event) {
     else
     {
 
-        
+
 
 
     }
