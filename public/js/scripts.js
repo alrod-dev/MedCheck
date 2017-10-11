@@ -1,14 +1,13 @@
 //=======================Global Functions=================================
 //Global Variables
-
 var medsTable = $("#myMeds");
 
 //Uploads information to CLoudinary
 var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/alrod909/upload";
 var CLOUDINARY_UPLOAD_PRESET = 'dov1tdtx';
 
-var imgPreview;
-var fileUpload;
+//Globar Variables
+var imgPreview, fileUpload, medID, imgFormat;
 
 //Waits until document is ready and allows the user to
 //use all these specific buttons
@@ -68,17 +67,17 @@ function validateForm() {
 function editMedsButton() {
 
     //Gets the id of THIS specific button
-    var listItemData = $(this).attr("id");
+    medID = $(this).attr("id");
 
     //Id number
-    listItemData = listItemData.replace("edit", "");
+    medID = medID.replace("edit", "");
 
     //Shows the specific buttpn on that table row
-    $("#save-change" + listItemData).show();
-    $(".userMed" + listItemData).prop('disabled', false);
-    $("#med_desc" + listItemData).prop('disabled', false);
-    $("#edit-image" + listItemData).show();
-    $("#med_desc" + listItemData).prop('disabled', false);
+    $("#save-change" + medID).show();
+    $(".userMed" + medID).prop('disabled', false);
+    $("#med_desc" + medID).prop('disabled', false);
+    $("#edit-image" + medID).show();
+
 }
 
 //Deletes medications
@@ -86,15 +85,15 @@ function deleteMeds() {
 
     // Function for handling what happens when the delete button is pressed
     //Gets the id of THIS specific button
-    var listItemData = $(this).attr("id");
+    medID = $(this).attr("id");
 
     //Id number
-    listItemData = listItemData.replace("deleteMed", "");
+    medID = medID.replace("deleteMed", "");
 
     //AJAX/Post method that delete the specific id number
     $.ajax({
         method: "DELETE",
-        url: "/api/meds/" + listItemData
+        url: "/api/meds/" + medID
     })
         .done(getMeds);
 
@@ -168,39 +167,40 @@ function updateMeds() {
     var updatedMeds;
 
     // Function for handling what happens when the delete button is pressed
-    var listItemData = $(this).attr("id");
+    medID = $(this).attr("id");
 
-    console.log(listItemData);
+    console.log(medID);
 
-    listItemData = listItemData.replace("save-change", "");
+    medID = medID.replace("save-change", "");
 
-    console.log(listItemData);
+    console.log(medID);
 
     // If all required fields are filled
 
     // Create an object for the user's data
     updatedMeds = {
-        medName: $("#med_name" + listItemData).val(),
-        drugClass: $("#drug_class" + listItemData).val(),
-        medDesc: $("#med_desc" + listItemData).val(),
-        dosage: $("#dosage" + listItemData).val(),
-        frequency: $("#frequency" + listItemData).val(),
-        quantity: $("#quantity" + listItemData).val(),
-        img: $("#imgAdd" + listItemData).attr("src"),
-        doctor: $("#doctor" + listItemData).val(),
-        drNumber: $("#doctor_number" + listItemData).val()
+        id: medID,
+        medName: $("#med_name" + medID).val(),
+        drugClass: $("#drug_class" + medID).val(),
+        medDesc: $("#med_desc" + medID).val(),
+        dosage: $("#dosage" + medID).val(),
+        frequency: $("#frequency" + medID).val(),
+        quantity: $("#quantity" + medID).val(),
+        img: $("#imgAdd" + medID).attr("src"),
+        doctor: $("#doctor" + medID).val(),
+        drNumber: $("#doctor_number" + medID).val()
     };
 
     console.log(updatedMeds);
 
-    $("#save-change" + listItemData).hide();
-    $(".userMed" + listItemData).prop('disabled', true);
-    $("#edit-image" + listItemData).hide();
+    $("#save-change" + medID).hide();
+    $(".userMed" + medID).prop('disabled', true);
+    $("#edit-image" + medID).hide();
 
 
     $.ajax({
         method: "PUT",
-        url: "/api/meds/" + listItemData,
+        url: "/api/meds",
         data: updatedMeds
     }).done(getMeds).catch(function (error) {
 
@@ -248,6 +248,38 @@ function uploadMedsCloudinary(event) {
 
     //Gets the file that was appended to the site
     var file = event.target.files[0];
+
+    console.log(file.name);
+
+        //Checks for file format
+        if(file.name.indexOf(".png"))
+        {
+            imgFormat = ".png";
+
+        }
+
+        else if(file.name.indexOf(".jpg"))
+        {
+            imgFormat = ".jpg";
+        }
+
+        else if(file.name.indexOf(".tif"))
+        {
+            imgFormat = ".tif";
+        }
+
+        else if(file.name.indexOf(".gif"))
+        {
+            imgFormat = ".gif";
+        }
+
+        else
+        {
+
+            alert("Invalid form of image format!")
+
+        }
+
     var formData = new FormData();
 
     //Appends file and cloudinary upload key to the form data
@@ -267,7 +299,11 @@ function uploadMedsCloudinary(event) {
 
         console.log(res);
 
-        imgPreview.src = res.data.secure_url;
+        console.log("http://res.cloudinary.com/alrod909/image/upload/v1507098800/" + res.data.public_id + imgFormat);
+
+        //Sets the image from cloudinary as the reference for the database
+
+        imgPreview.src = "http://res.cloudinary.com/alrod909/image/upload/v1507098800/" + res.data.public_id + imgFormat;
 
     }).catch(function (error) {
 
@@ -359,6 +395,9 @@ function addTables(medsData) {
         "        </div>\n" +
         "\n" +
         "    </div>");
+
+
+    $("#drugReminder").text(medsData.name);
 
     return newMeds;
 

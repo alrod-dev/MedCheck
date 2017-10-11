@@ -1,6 +1,6 @@
-// Author: Alfredo Rodriguez
+// Author: Alfredo Rodriguez, Brooklee Wilson, Mya Nguyen
 // File: JS - htmlRoutes.js
-// Date: 09/16/2017
+// Date: 10/10/2017
 
 var path = require("path");
 

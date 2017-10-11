@@ -1,3 +1,8 @@
+// Author: Alfredo Rodriguez, Brooklee Wilson, Mya Nguyen
+// File: JS - api-routes.js
+// Date: 10/10/2017
+
+
 // *********************************************************************************
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
@@ -25,9 +30,6 @@ module.exports = function(app) {
         });
 
     });
-
-    // GET route for getting all of the todo
-
 
 
     // POST route for saving a new todo. You can create a todo using the data on req.body
@@ -77,7 +79,7 @@ module.exports = function(app) {
 
 
     // PUT route for updating todos. The updated todo will be available in req.body
-    app.put("/api/meds/:id", function(req, res) {
+    app.put("/api/meds", function(req, res) {
 
 
         db.meds.update({
@@ -100,7 +102,6 @@ module.exports = function(app) {
 
             }
         }).then(function (dbMeds) {
-
 
             res.json(dbMeds);
 
