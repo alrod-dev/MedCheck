@@ -330,16 +330,18 @@ function addTables(medsData) {
         "<label class=\"active\"for=\"med_name" + medsData.id + "\">Medication</label>" + "</div>" + "<div class=\"input-field col s6\">" +
         "<input disabled value=\"" + medsData.drugClass + "\" id=\"drug_class" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
         "<label class=\"active\"for=\"drug_class" + medsData.id + "\">Drug Class</label>" + "</div>" + "</div>" +
+        "<div class=\"row\">" +
+            "<div class=\"input-field col s12\"><input disabled=\"\" value=\"" + medsData.description + "\" id=\"med_desc" + medsData.id + "\" " +
+        "type=\"text\" class= \"userMed" + medsData.id + " validate\">" +
+        "<label class=\"active\" for=\"med_desc" + medsData.id + "\">Description</label>" + "</div>" + "</div>" +
         "<div class=\"row\">" + "<div class=\"input-field col s12\">" +
-        "<textarea disabled id=\"med_desc" + medsData.id + "\" value= " + medsData.description + "\" class=\"materialize-textarea userMed \"></textarea>" +
-        "<label class=\"active\"for=\"med_desc" + medsData.id + "\">Description of medication</label>" + "</div>" + "</div>" + "<br>" +
-        "<div class=\"row\">" + "<div class=\"input-field col s4\">" +
+        "<input disabled=\"\" value=\"" + medsData.frequency  + "\" id=\"frequency" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
+        "<label class=\"active\" for=\"frequency" + medsData.id + "\">Frequency Taken</label>" + "</div>" + "</div> " + "<br>" +
+        "<div class=\"row\">" + "<div class=\"input-field col s6\">" +
+
         "<input disabled value=\"" + medsData.dosage + "\" id=\"dosage" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
         "<label class=\"active\"for=\"dosage" + medsData.id + "\">Dosage</label>" + "</div>" +
-        "<div class=\"input-field col s4\">" +
-        "<input disabled value=\"" + medsData.frequency + "\" id=\"frequency" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label class=\"active\"for=\"frequency" + medsData.id + "\">Frequency Taken</label>" + "</div>" +
-        "<div class=\"input-field col s4\">" +
+        "<div class=\"input-field col s6\">" +
         "<input disabled value=\"" + medsData.quantity + "\" id=\"quantity" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
         "<label class=\"active\"for=\"quantity" + medsData.id + "\">Quantity Left</label>" + "</div>" + "</div>" + "<br>" +
         "<div class=\"row\">" +
