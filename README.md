@@ -58,10 +58,6 @@ Built with the purpose of keeping  people healthy and helping them remember when
     <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745913/editingMyMeds_oavnmc.png" width="100%">
 </p>
 
-<p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507542334/picturesCloudinary_zbj1tu.png" width="100%">
-</p>
-
 <hr>
 
 <h2>Uploading to Cloudinary</h2>
