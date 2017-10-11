@@ -12,8 +12,6 @@ Built with the purpose of keeping  people healthy and helping them remember when
     <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745915/mainPage_kxptl7.png" width="100%">
 </p>
 
-<p>This starts up the application and allows you to start the survey or look at the Github Repo<p>
-
 <hr>
 
 <h2>About Us</h2>
