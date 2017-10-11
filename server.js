@@ -1,9 +1,13 @@
+// Author: Alfredo Rodriguez, Brooklee Wilson, Mya Nguyen
+// File: JS - server.js
+// Date: 10/10/2017
+
 // *** Dependencies
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-
+var methodOverride = require("method-override");
 
 // Sets up the Express App
 // =============================================================
@@ -25,6 +29,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// Override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
 
 
 // Static directory
