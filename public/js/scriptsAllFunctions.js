@@ -5,10 +5,12 @@ import {uploadMedsCloudinary, deleteMeds, updateMeds,
 editMedsButton, addMeds, getMeds, clearContent} from './allFunctions';
 
 
+//Waits until document is ready and allows the user to
+//use all these specific buttons
 $(document).on("click", ".deleteMed", deleteMeds);
 $(document).on("click", ".editBtn", editMedsButton);
 $(document).on("click", "#clear-content", clearContent);
-$(document).on("click", "#file-upload", uploadMedsCloudinary);
+$(document).on("click", ".uploadBtn", uploadPic);
 $(document).on("click", "#add-med", addMeds);
 $(document).on("click", ".save", updateMeds);
 
