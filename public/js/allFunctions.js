@@ -1,6 +1,16 @@
+//=======================Global Functions=================================
+//Global Variables
 var medsTable = $("#myMeds");
 
+//Uploads information to CLoudinary
+var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/alrod909/upload";
+var CLOUDINARY_UPLOAD_PRESET = 'dov1tdtx';
+
+//Globar Variables
+var imgPreview, fileUpload, medID, imgFormat;
+
 // Form validation
+// To validate all the info
 function validateForm() {
     var isValid = true;
 
@@ -15,39 +25,40 @@ function validateForm() {
 //Hides edit button
 function editMedsButton() {
 
-    // Function for handling what happens when the delete button is pressed
-    var listItemData = $(this).attr("id");
+    //Gets the id of THIS specific button
+    medID = $(this).attr("id");
 
-    listItemData = listItemData.replace("edit", "");
+    //Id number
+    medID = medID.replace("edit", "");
 
-    console.log(listItemData);
-
-    $("#save-change" + listItemData).show();
-    $(".userMed" + listItemData).prop('disabled', false);
-    $("#edit-image" + listItemData).show();
+    //Shows the specific buttpn on that table row
+    $("#save-change" + medID).show();
+    $(".userMed" + medID).prop('disabled', false);
+    $("#med_desc" + medID).prop('disabled', false);
+    $("#edit-image" + medID).show();
 
 }
-
 
 //Deletes medications
 function deleteMeds() {
 
     // Function for handling what happens when the delete button is pressed
-    var listItemData = $(this).attr("id");
+    //Gets the id of THIS specific button
+    medID = $(this).attr("id");
 
-    listItemData = listItemData.replace("deleteMed", "");
+    //Id number
+    medID = medID.replace("deleteMed", "");
 
-    console.log(listItemData);
-
+    //AJAX/Post method that delete the specific id number
     $.ajax({
         method: "DELETE",
-        url: "/api/meds/" + listItemData
+        url: "/api/meds/" + medID
     })
         .done(getMeds);
 
 }
 
-//Clears form box when adding new medications
+//Clears form box input field
 function clearContent() {
 
     $("#med_name").val("");
@@ -66,7 +77,7 @@ function clearContent() {
 function addMeds() {
 
     // If all required fields are filled
-    if (validateForm === true) {
+    if (validateForm() === true) {
         // Create an object for the user's data
 
         var newMed = {
@@ -79,19 +90,22 @@ function addMeds() {
             img: $("#imgAdd").attr("src"),
             doctor: $("#doctor").val(),
             drNumber: $("#doctor_number").val()
-
-
         };
 
 
+        clearContent();
         // AJAX post the data to the friends API.
+
         $.post("/api/meds", newMed, function (data) {
 
             console.log("Success");
 
             console.log(data);
 
+
         });
+        $('#successful-add').modal('open');
+
 
     }
 
@@ -102,8 +116,6 @@ function addMeds() {
 
     console.log(newMed);
 
-    clearContent();
-
     return false;
 
 }
@@ -111,27 +123,43 @@ function addMeds() {
 // Update a given post, bring user to the blog page when done
 function updateMeds() {
 
+    var updatedMeds;
+
     // Function for handling what happens when the delete button is pressed
-    var listItemData = $(this).attr("id");
+    medID = $(this).attr("id");
 
-    listItemData = listItemData.replace("save-change", "");
+    console.log(medID);
 
-    var updatedMeds = {
-        medName: $("#med_name" + listItemData).val(),
-        drugClass: $("#drug_class" + listItemData).val(),
-        medDesc: $("#med_desc" + listItemData).val(),
-        dosage: $("#dosage" + listItemData).val(),
-        frequency: $("#frequency" + listItemData).val(),
-        quantity: $("#quantity" + listItemData).val(),
-        img: $("#imgAdd" + listItemData).attr("src"),
-        doctor: $("#doctor" + listItemData).val(),
-        drNumber: $("#doctor_number" + listItemData).val()
+    medID = medID.replace("save-change", "");
+
+    console.log(medID);
+
+    // If all required fields are filled
+
+    // Create an object for the user's data
+    updatedMeds = {
+        id: medID,
+        medName: $("#med_name" + medID).val(),
+        drugClass: $("#drug_class" + medID).val(),
+        medDesc: $("#med_desc" + medID).val(),
+        dosage: $("#dosage" + medID).val(),
+        frequency: $("#frequency" + medID).val(),
+        quantity: $("#quantity" + medID).val(),
+        img: $("#imgAdd" + medID).attr("src"),
+        doctor: $("#doctor" + medID).val(),
+        drNumber: $("#doctor_number" + medID).val()
     };
+
+    console.log(updatedMeds);
+
+    $("#save-change" + medID).hide();
+    $(".userMed" + medID).prop('disabled', true);
+    $("#edit-image" + medID).hide();
 
 
     $.ajax({
         method: "PUT",
-        url: "api/meds",
+        url: "/api/meds",
         data: updatedMeds
     }).done(getMeds).catch(function (error) {
 
@@ -141,23 +169,83 @@ function updateMeds() {
 
 }
 
+function uploadPic() {
 
-function uploadMedsCloudinary() {
+    // Gets the id of the specific upload button
+    imgPreview = $(this).attr("id");
 
-    //Uploads information to CLoudinary
-    var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/alrod909/upload";
-    var CLOUDINARY_UPLOAD_PRESET = 'dov1tdtx';
+    var id = imgPreview.replace("edit-image", "");
 
-    var imgPreview = document.getElementById('img-preview');
+    //Changes it to the to the image screen to store the image
+    imgPreview = "imgAdd" + id;
+
+    console.log(imgPreview);
+
+    //Gets the whole tag based on the id
+    imgPreview = document.getElementById(imgPreview);
+
+    console.log(imgPreview);
+
+    //
+    fileUpload = "file-upload-addMedications" + id;
+
+    console.log(fileUpload);
+
+    //
+    fileUpload = document.getElementById(fileUpload);
+
+    console.log(fileUpload);
+
+    //Waits until there is a chnage in the image and uploads it to the cloudinary
+    $(document).on("change", fileUpload, uploadMedsCloudinary);
+}
+
+//Uploads the info/pic to the cloudinary api
+function uploadMedsCloudinary(event) {
 
     event.preventDefault();
 
+    //Gets the file that was appended to the site
     var file = event.target.files[0];
+
+    console.log(file.name);
+
+    //Checks for file format
+    if(file.name.indexOf(".png"))
+    {
+        imgFormat = ".png";
+
+    }
+
+    else if(file.name.indexOf(".jpg"))
+    {
+        imgFormat = ".jpg";
+    }
+
+    else if(file.name.indexOf(".tif"))
+    {
+        imgFormat = ".tif";
+    }
+
+    else if(file.name.indexOf(".gif"))
+    {
+        imgFormat = ".gif";
+    }
+
+    else
+    {
+
+        alert("Invalid form of image format!")
+
+    }
+
     var formData = new FormData();
 
+    //Appends file and cloudinary upload key to the form data
     formData.append('file', file);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
+    //Post method that uploads it to cloudinary
     axios({
         url: CLOUDINARY_URL,
         method: 'POST',
@@ -170,8 +258,11 @@ function uploadMedsCloudinary() {
 
         console.log(res);
 
-        imgPreview.src = res.data.secure_url;
+        console.log("http://res.cloudinary.com/alrod909/image/upload/v1507098800/" + res.data.public_id + imgFormat);
 
+        //Sets the image from cloudinary as the reference for the database
+
+        imgPreview.src = "http://res.cloudinary.com/alrod909/image/upload/v1507098800/" + res.data.public_id + imgFormat;
 
     }).catch(function (error) {
 
@@ -182,7 +273,7 @@ function uploadMedsCloudinary() {
 }
 
 
-// A function for rendering the list of authors to the page
+// A function for rendering the list of meds into the #myAdds div
 function renderMeds(rows) {
 
     medsTable.children().not(":last").remove();
@@ -191,13 +282,21 @@ function renderMeds(rows) {
 
         medsTable.prepend(rows);
     }
+    /* adds the materialize onclick to each med row
+    --ALF, COMMENT YOUR FLIPPIN CODE!
+    Sincerly.
+    Rob
+    */
+    $('.collapsible').collapsible();
 
 }
 
 
+//Creates the table with all the information it needs
 function addTables(medsData) {
 
 
+    //Sets the id of medication as the first tag to identify later which to delete and update
     var newMeds = $("<div id=" + medsData.id + ">");
 
     newMeds.data("meds", medsData);
@@ -208,34 +307,36 @@ function addTables(medsData) {
         "<span class=\"title\"><h5>Medication: " + medsData.name + "</h5></span> <p>click to expand info<br>" + "</p>" + "</li>" + "</ul>" + "</div>" +
         "<div class=\"collapsible-body\">" + "<form method=\"GET\" class=\"col s12\">" + "<br>" +
         "<div class=\"row\">" + "<div class=\"input-field col s6\">" +
-        "<input disabled value=\"" + medsData.name + "\" id=\"med_name" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"med_name" + medsData.id + "\">Medication</label>" + "</div>" + "<div class=\"input-field col s6\">" +
-        "<input disabled value=\"" + medsData.drugClass + "\" id=\"drug_class" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"drug_class" + medsData.id + "\">Drug Class</label>" + "</div>" + "</div>" +
+        "<input disabled value=\"" + medsData.name + "\" id=\"med_name" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\"for=\"med_name" + medsData.id + "\">Medication</label>" + "</div>" + "<div class=\"input-field col s6\">" +
+        "<input disabled value=\"" + medsData.drugClass + "\" id=\"drug_class" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\"for=\"drug_class" + medsData.id + "\">Drug Class</label>" + "</div>" + "</div>" +
+        "<div class=\"row\">" +
+        "<div class=\"input-field col s12\"><input disabled=\"\" value=\"" + medsData.description + "\" id=\"med_desc" + medsData.id + "\" " +
+        "type=\"text\" class= \"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\" for=\"med_desc" + medsData.id + "\">Description</label>" + "</div>" + "</div>" +
         "<div class=\"row\">" + "<div class=\"input-field col s12\">" +
-        "<textarea disabled id=\"med_desc" + medsData.id + "\" value= " + medsData.description + "\" class=\"userMed materialize-textarea\"></textarea>" +
-        "<label for=\"med_desc" + medsData.id + "\">Description of medication</label>" + "</div>" + "</div>" + "<br>" +
-        "<div class=\"row\">" + "<div class=\"input-field col s4\">" +
-        "<input disabled value=\"" + medsData.dosage + "\" id=\"dosage" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"dosage" + medsData.id + "\">Dosage</label>" + "</div>" +
-        "<div class=\"input-field col s4\">" +
-        "<input disabled value=\"" + medsData.frequency + "\" id=\"frequency" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"frequency" + medsData.id + "\">Frequency Taken</label>" + "</div>" +
-        "<div class=\"input-field col s4\">" +
-        "<input disabled value=\"" + medsData.quantity + "\" id=\"quantity" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"quantity" + medsData.id + "\">Quantity Left</label>" + "</div>" + "</div>" + "<br>" +
+        "<input disabled=\"\" value=\"" + medsData.frequency + "\" id=\"frequency" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\" for=\"frequency" + medsData.id + "\">Frequency Taken</label>" + "</div>" + "</div> " + "<br>" +
+        "<div class=\"row\">" + "<div class=\"input-field col s6\">" +
+
+        "<input disabled value=\"" + medsData.dosage + "\" id=\"dosage" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\"for=\"dosage" + medsData.id + "\">Dosage</label>" + "</div>" +
+        "<div class=\"input-field col s6\">" +
+        "<input disabled value=\"" + medsData.quantity + "\" id=\"quantity" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\"for=\"quantity" + medsData.id + "\">Quantity Left</label>" + "</div>" + "</div>" + "<br>" +
         "<div class=\"row\">" +
         "<div class=\"input-field col s6\">" +
-        "<input disabled value=\"" + medsData.doctor_Name + "\" id=\"doctor" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"doctor" + medsData.id + "\">Prescribing Doctor</label>" + "</div>" +
+        "<input disabled value=\"" + medsData.doctor_Name + "\" id=\"doctor" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\"for=\"doctor" + medsData.id + "\">Prescribing Doctor</label>" + "</div>" +
         "<div class=\"input-field col s6\">" +
-        "<input disabled value=\"" + medsData.phoneNumber + "\" id=\"doctor_number" + medsData.id + "\"" + "type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
-        "<label for=\"doctor_number" + medsData.id + "\">Prescribing Doctor's Phone #</label>" + "</div>" + "</div>" +
+        "<input disabled value=\"" + medsData.phoneNumber + "\" id=\"doctor_number" + medsData.id + "\"" + "type=\"text\" class=\"userMed" + medsData.id + " validate form-control\">" +
+        "<label class=\"active\"for=\"doctor_number" + medsData.id + "\">Prescribing Doctor's Phone #</label>" + "</div>" + "</div>" +
         "<div class=\"row\">" + "<div class=\"input field col s6\">" + "<div class=\"card\">" +
-        "<img src=\"" + medsData.img + "\" class=\"img-preview\"/>" +
-        "<label class=\"file-upload-container\" for=\"file-upload-myMedications" + medsData.id + "\">" +
-        "<input class= \"uploadButton\" id=\"file-upload-myMedications" + medsData.id + "\" type=\"file\">" +
-        "<a id=\"edit-image" + medsData.id + "\" class=\"waves-effect waves-light btn uploadBtn2\">Select an Image</a>" + "</label>" +
+        "<img src=\"" + medsData.img + "\" id=\"imgAdd" + medsData.id + "\"  class=\"img-preview\"/>" +
+        "<label class=\"file-upload-container\" for=\"file-upload-addMedications" + medsData.id + "\">" +
+        "<input class= \"uploadButton\" id=\"file-upload-addMedications" + medsData.id + "\" type=\"file\">" +
+        "<a id=\"edit-image" + medsData.id + "\" class=\"waves-effect waves-light btn uploadBtn uploadBtn2\">Select an Image</a>" + "</label>" +
         "</div>" + "</div>" + "</div>" +
         "<div class=\"row\">" +
         "<div class=\"col s2\">" +
@@ -254,11 +355,14 @@ function addTables(medsData) {
         "\n" +
         "    </div>");
 
+
+    $("#drugReminder").text(medsData.name);
+
     return newMeds;
 
 }
 
-
+//Get method that puts all the medication in the page
 function getMeds() {
 
     // Here we get the location of the root page.
@@ -276,11 +380,10 @@ function getMeds() {
             console.log("------------------------------------");
             console.log(data);
 
-            // Loop through and display each of the customers
+            // Loop through and display each of the medications
             for (var i = 0; i < data.length; i++) {
 
                 meds.push(addTables(data[i]));
-
             }
 
             renderMeds(meds);
