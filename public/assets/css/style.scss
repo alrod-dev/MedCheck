@@ -1,7 +1,8 @@
 //Materialize Color 
 $primary-color:(#19B5BA) !default;
+$secondary-color:(#FF7822);
 $main-color:(#19B5BA);
-$link-color:(#19B5BA);
+$link-color:(#FF7822);
 
 $gray-color:(#979797);
 
@@ -13,8 +14,19 @@ $header-font: ('Catamaran', sans-serif);
   background-color:$main-color;
 }
 
-h1, h2, h3, h4, h4{
+h1, h2, h3,{
   color:$primary-color;
+  font-family: $header-font;
+  text-transform: uppercase;
+  line-height: .75em;
+}
+
+h3{
+  font-size: 1.75em;
+}
+
+h4, h5 {
+  color: $secondary-color;
   font-family: $header-font;
   text-transform: uppercase;
 }
@@ -23,13 +35,17 @@ hr{
   color:$gray-color;
 }
 
+element {
+  color: $secondary-color;
+}
+
 a{
-  color: $primary-color;
+  color: $secondary-color;
 }
 
 a{
   .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){
-    color: $link-color;
+    color: $secondary-color;
   }
 }
 
@@ -155,5 +171,45 @@ blockquote {
 .modal-action {
   background-color: $primary-color ;
   color: white;
-  border-radius: 35px
+  border-radius: 35px;
+}
+
+.collection .collection-item.avatar i.circle{
+  background-color: $secondary-color;
+}
+
+.left-bumper {
+  margin-left: 20px;
+}
+
+.card .card-image .card-title{
+  font-family: $header-font;
+
+}
+
+.modal-action{
+  background-color: $secondary-color;
+}
+
+.reminder-body {
+  color: $primary-color;
+  font-size: 1.75em;
+  font-family: "Catamaran", sans-serif;
+  line-height: 1em;
+}
+
+.modal {
+  max-height: 100%;
+}
+
+.medium {
+  .material-icons .right{
+    h3 .modalHead{
+      color: $secondary-color;
+    }
+  }
+}
+
+.bell-reminder{
+  color: white;
 }

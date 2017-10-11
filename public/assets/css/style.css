@@ -1,19 +1,31 @@
 #nav-wrapper {
   background-color: #19B5BA; }
 
-h1, h2, h3, h4, h4 {
+h1, h2, h3 {
   color: #19B5BA;
+  font-family: "Catamaran", sans-serif;
+  text-transform: uppercase;
+  line-height: .75em; }
+
+h3 {
+  font-size: 1.75em; }
+
+h4, h5 {
+  color: #FF7822;
   font-family: "Catamaran", sans-serif;
   text-transform: uppercase; }
 
 hr {
   color: #979797; }
 
+element {
+  color: #FF7822; }
+
 a {
-  color: #19B5BA; }
+  color: #FF7822; }
 
 a .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-  color: #19B5BA; }
+  color: #FF7822; }
 
 .hero {
   background-image: url("http://res.cloudinary.com/alrod909/image/upload/v1507168771/homeBG-white_bhelgs.jpg");
@@ -77,7 +89,7 @@ blockquote {
 blockquote {
   border-left: 5px solid #19B5BA; }
 
-#alertModal, #fill-out {
+#alertModal, #fill-out, #successful-add {
   border-radius: 14px; }
 
 #modalHead {
@@ -108,5 +120,32 @@ blockquote {
   background-color: #19B5BA;
   color: white;
   border-radius: 35px; }
+
+.collection .collection-item.avatar i.circle {
+  background-color: #FF7822; }
+
+.left-bumper {
+  margin-left: 20px; }
+
+.card .card-image .card-title {
+  font-family: "Catamaran", sans-serif; }
+
+.modal-action {
+  background-color: #FF7822; }
+
+.reminder-body {
+  color: #19B5BA;
+  font-size: 1.75em;
+  font-family: "Catamaran", sans-serif;
+  line-height: 1em; }
+
+.modal {
+  max-height: 100%; }
+
+.medium .material-icons .right h3 .modalHead {
+  color: #FF7822; }
+
+.bell-reminder {
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

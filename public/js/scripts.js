@@ -80,7 +80,7 @@ function editMedsButton() {
     $(".userMed" + listItemData).prop('disabled', false);
     $("#med_desc" + listItemData).prop('disabled', false);
     $("#edit-image" + listItemData).show();
-
+    $("#med_desc" + listItemData).prop('disabled', false);
 }
 
 //Deletes medications
@@ -139,16 +139,23 @@ function addMeds() {
         };
 
 
-        // AJAX post that adds new medications to the database
+        clearContent();
+        // AJAX post the data to the friends API.
+
         $.post("/api/meds", newMed, function (data) {
 
             console.log("Success");
 
             console.log(data);
 
-        }).done(getMeds);
 
-        clearContent();
+        });
+        $('#successful-add').modal('open');
+
+        
+
+       
+
 
     }
 
@@ -331,6 +338,7 @@ function addTables(medsData) {
         "<input disabled=\"\" value=\"" + medsData.frequency  + "\" id=\"frequency" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
         "<label class=\"active\" for=\"frequency" + medsData.id + "\">Frequency Taken</label>" + "</div>" + "</div> " + "<br>" +
         "<div class=\"row\">" + "<div class=\"input-field col s6\">" +
+
         "<input disabled value=\"" + medsData.dosage + "\" id=\"dosage" + medsData.id + "\" type=\"text\" class=\"userMed" + medsData.id + " validate\">" +
         "<label class=\"active\"for=\"dosage" + medsData.id + "\">Dosage</label>" + "</div>" +
         "<div class=\"input-field col s6\">" +
