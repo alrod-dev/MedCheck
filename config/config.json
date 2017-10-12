@@ -1,11 +1,9 @@
 {
   "development": {
-    "username": "root",
-
-    "password": "89988998ar",
-
-    "database": "medCheck_db",
-    "host": "127.0.0.1",
+    "username": "qip0ooeq8vebxycq",
+    "password": "meqlgnxvt0g6jdlo",
+    "database": "ly8catv9op7y0nnt",
+    "host": "xq7t6tasopo9xxbs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
