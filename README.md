@@ -9,7 +9,7 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>Front Page</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745915/mainPage_kxptl7.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745915/medCheck/mainPage_kxptl7.png" width="100%">
 </p>
 
 <hr>
@@ -17,7 +17,7 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>About Us</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745916/aboutUs_twlulf.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745916/medCheck/aboutUs_twlulf.png" width="100%">
 </p>
 
 <hr>
@@ -25,7 +25,7 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>Log In</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745914/logIn_krnqzd.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745914/medCheck/logIn_krnqzd.png" width="100%">
 </p>
 
 <hr>
@@ -33,11 +33,11 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>Modals</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745912/reminder_pafku7.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745912/medCheck/reminder_pafku7.png" width="100%">
 </p>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745914/finishFillingOutForm_ajszsl.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745914/medCheck/finishFillingOutForm_ajszsl.png" width="100%">
 </p>
 
 <hr>
@@ -45,7 +45,7 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>My Meds</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745913/myMeds_jcxhrp.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745913/medCheck/myMeds_jcxhrp.png" width="100%">
 </p>
 
 <hr>
@@ -53,7 +53,7 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>My Meds Info</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745913/editingMyMeds_oavnmc.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745913/medCheck/editingMyMeds_oavnmc.png" width="100%">
 </p>
 
 <hr>
@@ -61,7 +61,7 @@ Built with the purpose of keeping  people healthy and helping them remember when
 <h2>Uploading to Cloudinary</h2>
 
 <p style="text-align: center">
-    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745916/pictureToCloudinary_pszy08.png" width="100%">
+    <img src="http://res.cloudinary.com/alrod909/image/upload/v1507745916/medCheck/pictureToCloudinary_pszy08.png" width="100%">
 </p>
 
 <hr>
