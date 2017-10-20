@@ -120,8 +120,8 @@ function addMeds() {
     // If all required fields are filled
     if (validateForm() === true) {
         // Create an object for the user's data
-
         var newMed = {
+            //Grabs the value data
             medName: $("#med_name").val(),
             drugClass: $("#drug_class").val(),
             medDesc: $("#med_desc").val(),
@@ -136,7 +136,6 @@ function addMeds() {
 
         clearContent();
         // AJAX post the data to the friends API.
-
         $.post("/api/meds", newMed, function (data) {
 
             console.log("Success");
@@ -145,6 +144,8 @@ function addMeds() {
 
 
         });
+
+        //Opens up modal after its added
         $('#successful-add').modal('open');
 
 
@@ -169,14 +170,10 @@ function updateMeds() {
     // Function for handling what happens when the delete button is pressed
     medID = $(this).attr("id");
 
-    console.log(medID);
-
     medID = medID.replace("save-change", "");
 
-    console.log(medID);
 
     // If all required fields are filled
-
     // Create an object for the user's data
     updatedMeds = {
         id: medID,
@@ -210,6 +207,7 @@ function updateMeds() {
 
 }
 
+//Uploads Pics to Cloudinary
 function uploadPic() {
 
     // Gets the id of the specific upload button
@@ -220,22 +218,14 @@ function uploadPic() {
     //Changes it to the to the image screen to store the image
     imgPreview = "imgAdd" + id;
 
-    console.log(imgPreview);
-
     //Gets the whole tag based on the id
     imgPreview = document.getElementById(imgPreview);
-
-    console.log(imgPreview);
 
     //
     fileUpload = "file-upload-addMedications" + id;
 
-    console.log(fileUpload);
-
     //
     fileUpload = document.getElementById(fileUpload);
-
-    console.log(fileUpload);
 
     //Waits until there is a chnage in the image and uploads it to the cloudinary
     $(document).on("change", fileUpload, uploadMedsCloudinary);
@@ -323,11 +313,7 @@ function renderMeds(rows) {
 
         medsTable.prepend(rows);
     }
-    /* adds the materialize onclick to each med row
-    --ALF, COMMENT YOUR FLIPPIN CODE! 
-    Sincerly.
-    Rob
-    */
+
     $('.collapsible').collapsible();
 
 }

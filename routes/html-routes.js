@@ -2,6 +2,8 @@
 // File: JS - htmlRoutes.js
 // Date: 10/10/2017
 
+//Path variable that allows to select
+// the directory to read the file from
 var path = require("path");
 
 module.exports = function getSites(app){

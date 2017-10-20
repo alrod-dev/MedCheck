@@ -1,3 +1,7 @@
+// Author: Alfredo Rodriguez, Brooklee Wilson, Mya Nguyen
+// File: JS - index.js
+// Date: 10/10/2017
+
 'use strict';
 
 var fs        = require('fs');
